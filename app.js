@@ -22,13 +22,11 @@ db.open(function(err, db) {
 
     console.log("Connected to '" + nconf.get("mongo").database + "' database");
     db.collection(nconf.get("mongo").collection, {strict:true}, function(err, collection) {
-        if (err) {
-        	console.log("Empty collection, import csv (ask Will)");
-        }
-        console.log('Collection exists');
+        if (err) throw err;
+        console.log('Collection exists...');
         collection.find().toArray(function (err, items) {
         	if (items.length == 0) {
-        		console.log("Empty collection, import csv (ask Will)");
+        		console.log("Empty collection");
         	}
         });
     });
