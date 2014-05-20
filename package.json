@@ -1,0 +1,21 @@
+{
+  "name": "nodopoly",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.0.2",
+    "errorhandler": "^1.0.1",
+    "express": "*",
+    "jade": "*",
+    "method-override": "^1.0.0",
+    "mongodb": "*",
+    "mongoose": "*",
+    "morgan": "^1.0.1",
+    "nconf": "*",
+    "serve-favicon": "^2.0.0",
+    "underscore": "*"
+  }
+}
