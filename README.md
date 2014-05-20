@@ -6,7 +6,7 @@ Online Monopoly game using NodeJS and MongoDB
 
 
 ##Notes
-```
-Create initial MongoDB database and collection to generate game board
 
-$ mongoimport --db nodopoly  --drop --collection gameBoard  --file gameBoard.json  --jsonArray
+Create the initial MongoDB database and collection and insert the game board properties
+```
+$ mongoimport --db nodopoly  --drop --collection gameBoard  --file setup/gameBoard.json  --jsonArray
