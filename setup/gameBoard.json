@@ -1,60 +1,55 @@
 {
-	"gameboard": {
-		"tiles" : {
+	"_id" : "gameboardUK",
+	"tiles" : {
 
-		},
-		"deeds" : {
+	},
+	"deeds" : {
 
-			},
-		"cards" : {
-			"communityChest" : [{
+	},
+	"cards" : {
+		"communityChest" : [{
 
-			}],
-			"chance" : {
+		}],
+		"chance" : {
 
-			}
-		},
-		"tokens" : [
-			{
-				"name" : "Wheelbarrow",
-				"icon" : "/img/wheelbarrow.png"
-			}, 
-			{
-				"name" : "Battleship",
-				"icon" : "/img/battleship.png"
-			},
-			{
-				"name" : "Dog",
-				"icon" : "/img/dog.png"
-			},
-			{
-				"name" : "Iron",
-				"icon" : "/img/iron.png"
-			},
-			{
-				"name" : "Car",
-				"icon" : "/img/car.png"
-			}, 
-			{
-				"name" : "Thimble",
-				"icon" : "/img/thimble.png"
-			},
-			{
-				"name" : "Top hat",
-				"icon" : "/img/tophat.png"
-			},
-			{
-				"name" : "Boot",
-				"icon" : "/img/boot.png"
-			}
-		]},
-		"buildings" : {
-			"houses" : 32,
-			"hotels" : 12
 		}
-	}
+	},
+	"tokens" : [
+		{
+			"name" : "Wheelbarrow",
+			"icon" : "/img/wheelbarrow.png"
+		}, 
+		{
+			"name" : "Battleship",
+			"icon" : "/img/battleship.png"
+		},
+		{
+			"name" : "Dog",
+			"icon" : "/img/dog.png"
+		},
+		{
+			"name" : "Iron",
+			"icon" : "/img/iron.png"
+		},
+		{
+			"name" : "Car",
+			"icon" : "/img/car.png"
+		}, 
+		{
+			"name" : "Thimble",
+			"icon" : "/img/thimble.png"
+		},
+		{
+			"name" : "Top hat",
+			"icon" : "/img/tophat.png"
+		},
+		{
+			"name" : "Boot",
+			"icon" : "/img/boot.png"
+		}
+	],
+	"buildings" : [{"houses" : 32}, {"hotels" : 12}]
 }
-
 
 // Go
 
