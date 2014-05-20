@@ -1,0 +1,113 @@
+{
+	"gameboard": {
+		"tiles" : {
+
+		},
+		"deeds" : {
+
+			},
+		"cards" : {
+			"communityChest" : [{
+
+			}],
+			"chance" : {
+
+			}
+		},
+		"tokens" : [
+			{
+				"name" : "Wheelbarrow",
+				"icon" : "/img/wheelbarrow.png"
+			}, 
+			{
+				"name" : "Battleship",
+				"icon" : "/img/battleship.png"
+			},
+			{
+				"name" : "Dog",
+				"icon" : "/img/dog.png"
+			},
+			{
+				"name" : "Iron",
+				"icon" : "/img/iron.png"
+			},
+			{
+				"name" : "Car",
+				"icon" : "/img/car.png"
+			}, 
+			{
+				"name" : "Thimble",
+				"icon" : "/img/thimble.png"
+			},
+			{
+				"name" : "Top hat",
+				"icon" : "/img/tophat.png"
+			},
+			{
+				"name" : "Boot",
+				"icon" : "/img/boot.png"
+			}
+		]},
+		"buildings" : {
+			"houses" : 32,
+			"hotels" : 12
+		}
+	}
+}
+
+
+// Go
+
+// Brown
+// Old Kent Road
+// Whitechapel Road
+
+// Light Blue
+// The Angel Islington
+// Euston Road
+// Pentonville Road
+
+// Jail
+
+// Pink
+// Pall Mall
+// Whitehall
+// Northumberland Avenue
+
+// Orange
+// Bow Street
+// Marlborough Street
+// Vine Street
+
+// Free Parking
+
+// Red
+// The Strand
+// Fleet Street
+// Trafalgar Square
+
+// Yellow
+// Leicester Square
+// Coventry Street
+// Piccadilly
+
+// Go to Jail
+
+// Green
+// Regent Street
+// Oxford Street
+// Bond Street
+
+// Dark Blue
+// Park Lane
+// Mayfair
+
+// Stations
+// King's Cross Station
+// Marylebone Station
+// Fenchurch St Station
+// Liverpool Street Station
+
+// Utilities
+// Electric Company
+// Water Works
