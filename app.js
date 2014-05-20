@@ -12,7 +12,6 @@ var users = require('./routes/users');
 
 var app = express();
 
-
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 
@@ -44,8 +43,13 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Make our db accessible to our router
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
+
 app.use('/', routes);
-app.use('/users', users);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
