@@ -1,60 +1,82 @@
-
-/**
- * Module dependencies.
- */
-
 var express = require('express');
-var routes = require('./routes');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var errorHandler = require('errorhandler');
-var logger  = require('morgan');
-var favicon = require('serve-favicon');
-var http = require('http');
 var path = require('path');
+var favicon = require('static-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
 var nconf = require('nconf').file({file: 'config.json'});
 
-var mongo = require('mongoose');
-var db = mongo.db("mongodb://" + nconf.get("mongo").host + ":" + nconf.get("mongo").port + "/" + nconf.get("mongo").database, {native_parser:true})
+var routes = require('./routes/index');
+var users = require('./routes/users');
 
-db.open(function(err, db) {
-	if (err) throw err;
+var app = express();
 
+
+var mongoose = require('mongoose');
+var db = mongoose.connection;
+
+db.on('error', console.error);
+db.once('open', function() {
+  // Create your schemas and models here.
     console.log("Connected to '" + nconf.get("mongo").database + "' database");
-    db.collection(nconf.get("mongo").collection, {strict:true}, function(err, collection) {
+    db.collection("test", {strict:true}, function(err, collection) {
         if (err) throw err;
         console.log('Collection exists...');
         collection.find().toArray(function (err, items) {
-        	if (items.length == 0) {
-        		console.log("Empty collection");
-        	}
+            if (items.length == 0) {
+                console.log("Empty collection");
+            }
         });
     });
 });
 
-var app = express();
+mongoose.connect("mongodb://" + nconf.get("mongo").host + ":" + nconf.get("mongo").port + "/" + nconf.get("mongo").database);
 
-// all environments
-app.set('port', process.env.PORT || nconf.get("http").port);
+// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-//app.use(favicon(__dirname + '/public/images/favicon.ico'));
+
+app.use(favicon());
 app.use(logger('dev'));
-//app.use(bodyParser({ keepExtensions: true, uploadDir: __dirname + '/tmp' }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(methodOverride());
-
-//app.use(app.router);
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// development only
-if ('development' == app.get('env')) {
-  app.use(errorHandler());
+app.use('/', routes);
+app.use('/users', users);
+
+/// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+/// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
 }
 
-app.get('/', routes.index(db));
-
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
+
+
+module.exports = app;
