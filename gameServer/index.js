@@ -2,7 +2,7 @@ var _ = require('underscore');
 var EventEmitter = require('events').EventEmitter;
 var net = require('net');
 
-var engine = {
+var gameServer = {
 	createServer: function (config) {
 
 		var emitter = new EventEmitter();
@@ -147,4 +147,4 @@ var engine = {
 	}
 };
 
-module.exports = engine;
+module.exports = gameServer;

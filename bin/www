@@ -2,8 +2,52 @@
 var debug = require('debug')('nodopoly');
 var app = require('../app');
 
+
+
+var game = require('../gameServer');
+
 app.set('port', process.env.PORT || 3000);
 
-var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
+var httpServer = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + httpServer.address().port);
+});
+
+var server = game.createServer({
+	httpServer: httpServer
+});
+
+server.start();
+
+var mgr = game.createManager();
+
+server.on('client connection',  function (socket) {
+	var ip = socket.remoteAddress || 'unknown IP Address';
+	var client = chatti.transformSocket(socket);
+
+	client.emit('message', {
+		user: 'Server',
+		action: 'chat',
+		message: 'Welcome to the chat!'
+	});
+
+	mgr.add(client);
+
+	client.broadcast('message', {
+		user: 'Server',
+		message: 'Someone connected: ' + ip
+	})
+
+	console.log(_.keys(socket));
+});
+
+server.on('error', function (err) {
+	console.log(err);
+	if (err.code == 'EADDRINUSE') {
+		//Port already in use
+	}
+});
+
+mgr.on('client message', function (data) {
+	//if (config.app.verbose) { console.log(data.data); }
+	data.client.broadcast('message', data.data);
 });
