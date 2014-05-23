@@ -29,8 +29,8 @@ server.on('client connection',  function (socket) {
 
 	client.emit('message', {
 		user: 'Server',
-		action: 'chat',
-		message: 'Welcome to the chat!'
+		action: 'msg',
+		message: 'Welcome to Nodopoly!'
 	});
 
 	mgr.add(client);
@@ -40,7 +40,7 @@ server.on('client connection',  function (socket) {
 		message: 'Someone connected: ' + ip
 	})
 
-	console.log(_.keys(socket));
+	if (config.verbose) console.log(_.keys(socket));
 });
 
 server.on('error', function (err) {

@@ -20,7 +20,7 @@ var gameServer = {
 				emitter.on(event, fn);
 			},
 			start: function (){
-				console.log('Starting')
+				console.log('Starting game server')
 				if(config.httpServer != null) {
 					var io = require('socket.io').listen(config.httpServer);
 					io.set('log level', 1); // reduce logging
@@ -36,7 +36,7 @@ var gameServer = {
 
 					server.listen(config.tcpPort, config.tcpHost);
 					server.on('error', onSocketError);
-					console.log('listening on net')
+					if (config.verbose) console.log('listening on net')
 				}
 			}
 		};
