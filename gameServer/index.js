@@ -20,21 +20,23 @@ var gameServer = {
 				emitter.on(event, fn);
 			},
 			start: function (){
+				console.log('Starting')
 				if(config.httpServer != null) {
 					var io = require('socket.io').listen(config.httpServer);
 					io.set('log level', 1); // reduce logging
 					io.sockets.on('connection', onSocketConnection);
 				}
-				if (config.tcpHost != null && config.tcpPort != null) {
+				if (config.tcpServer != null && config.tcpPort != null) {
 					var server = net.Server();
 					server.on('connection', onSocketConnection);
 
 					server.on('listening', function () {
-						console.log('Server is now listening ' + config.tcpHost + ':' + config.tcpPort);
+						console.log('Server is now listening ' + config.tcpServer + ':' + config.tcpPort);
 					});
 
 					server.listen(config.tcpPort, config.tcpHost);
 					server.on('error', onSocketError);
+					console.log('listening on net')
 				}
 			}
 		};

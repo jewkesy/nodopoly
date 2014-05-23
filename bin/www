@@ -1,8 +1,9 @@
 #!/usr/bin/env node
+var _ = require('underscore');
 var debug = require('debug')('nodopoly');
 var app = require('../app');
 
-
+var config = require('nconf').file({file: 'config.json'});
 
 var game = require('../gameServer');
 
@@ -13,7 +14,9 @@ var httpServer = app.listen(app.get('port'), function() {
 });
 
 var server = game.createServer({
-	httpServer: httpServer
+	httpServer: httpServer,
+	tcpServer: config.get("tcp").host,
+	tcpPort: config.get("tcp").port
 });
 
 server.start();
@@ -22,7 +25,7 @@ var mgr = game.createManager();
 
 server.on('client connection',  function (socket) {
 	var ip = socket.remoteAddress || 'unknown IP Address';
-	var client = chatti.transformSocket(socket);
+	var client = game.transformSocket(socket);
 
 	client.emit('message', {
 		user: 'Server',
@@ -48,6 +51,6 @@ server.on('error', function (err) {
 });
 
 mgr.on('client message', function (data) {
-	//if (config.app.verbose) { console.log(data.data); }
+	if (nconf.get("verbose")) { console.log(data.data); }
 	data.client.broadcast('message', data.data);
 });

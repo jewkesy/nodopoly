@@ -16,6 +16,7 @@
     "morgan": "~1.0.0",
     "nconf": "^0.6.9",
     "socket.io": "^0.9.16",
-    "static-favicon": "~1.0.0"
+    "static-favicon": "~1.0.0",
+    "underscore": "^1.6.0"
   }
 }
