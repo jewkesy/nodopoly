@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var nconf = require('nconf').file({file: 'config.json'});
 
 var routes = require('./routes/index');
+var users = require('./routes/users');
 
 var app = express();
 
@@ -18,7 +19,7 @@ db.on('error', console.error);
 db.once('open', function() {
   // Create your schemas and models here.
     console.log("Connected to '" + nconf.get("mongo").database + "' database");
-    db.collection("test", {strict:true}, function(err, collection) {
+    db.collection("gameBoard", {strict:true}, function(err, collection) {
         if (err) throw err;
         console.log('Collection exists...');
         collection.find().toArray(function (err, items) {
@@ -29,7 +30,7 @@ db.once('open', function() {
     });
 });
 
-mongoose.connect("mongodb://" + nconf.get("mongo").host + ":" + nconf.get("mongo").port + "/" + nconf.get("mongo").database);
+mongoose.connect("mongodb://" + nconf.get("mongo").user + ":" + nconf.get("mongo").password + "@" + nconf.get("mongo").host + ":" + nconf.get("mongo").port + "/" + nconf.get("mongo").database);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,6 +50,7 @@ app.use(function(req,res,next){
 });
 
 app.use('/', routes);
+app.use('/users', users);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
