@@ -10,21 +10,15 @@ router.get('/', function(req, res) {
 router.get('/userlist', function(req, res) {
     var db = req.db;
 
-	db.collection('users').find({}).toArray(function (err, items) {
-			if (err) { console.log(err); return res.send(err);}
-			if (items.length == 0) { res.send("No users found"); }
-      		res.send(items);
-		})
-
-return;
-    db.collection('users').find({},{}, function(err, docs){
-    	if (err) res.send(err)
-console.log(docs)
-    	//console.log(docs)
-        res.render('userlist', {
-            "userlist" : docs
+	db.collection('users').find({},{}).toArray(function (err, items) {
+		if (err) { console.log(err); return res.send(err);}
+		if (items.length == 0) { res.send("No users found"); }
+  		//res.send(items);
+  		console.log(items);
+  		res.render('userlist', {
+            "userlist" : items
         });
-    });
+	});
 });
 
 /* GET New User page. */
