@@ -9,25 +9,38 @@ var nconf = require('nconf').file({file: 'config.json'});
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var gameboard = require('./routes/gameboard');
 
 var app = express();
 
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 
+var gameBoardSchema = new mongoose.Schema({
+    _id : String
+});
+
+var gameBoardModel = mongoose.model('gameBoard', gameBoardSchema);
+
 db.on('error', console.error);
 db.once('open', function() {
   // Create your schemas and models here.
     console.log("Connected to '" + nconf.get("mongo").database + "' database");
-    db.collection("gameBoard", {strict:true}, function(err, collection) {
-        if (err) throw err;
-        console.log('Collection exists...');
-        collection.find().toArray(function (err, items) {
-            if (items.length == 0) {
-                console.log("Empty collection");
-            }
-        });
+
+    gameBoardModel.find({}, function (err, item) {
+        if (err) console.log(err);
+        console.log(item);
     });
+
+    // db.collection("gameBoard", {strict:true}, function(err, collection) {
+    //     if (err) throw err;
+    //     console.log('gameBoard collection exists...');
+    //     collection.find().toArray(function (err, items) {
+    //         if (items.length == 0) {
+    //             console.log("Empty collection");
+    //         }
+    //     });
+    // });
 });
 
 mongoose.connect("mongodb://" + nconf.get("mongo").user + ":" + nconf.get("mongo").password + "@" + nconf.get("mongo").host + ":" + nconf.get("mongo").port + "/" + nconf.get("mongo").database);
@@ -51,6 +64,7 @@ app.use(function(req,res,next){
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/gameboard', gameboard);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

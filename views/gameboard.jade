@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  div(id="menu")
+    ul
+      li(class="selected", id="mnuMissionControl")
+        a(href="#MissionControl") Mission Control
+      li(id="mnuMap")
+        a(href="#Map") Map 
+      li(id="mnuHistory")
+        a(href="#History") History  
+  div(id="chat-history")
+  div(id="drones")
+  div(id="people")
+  div(id="mapContainer")
+  div(id="history")
+  div(class="clear")
+  div(id="commands")
+    input.text(id="toUser", size="10", value="*")
+    input.text(id="duration", size="10", value="5")
+    input.text(id="message", size="50", value="list-devices")
+    input(type="button", id="sendButton", value="send")
+    input(type="button", id="scan", value="scan")
+    img(id="broadcast", src="/images/broadcast_icon.png", height="16px", style="display: none;")
+    input(type="checkbox", id="chkboxListDevices", checked=(true===false ? "checked" : undefined))
+    | Show all traffic
+  div(id="serverStatus")
+  div(id="hdnIP", ipaddress="#{ipAddress}")

@@ -6,7 +6,6 @@ var app = require('../app');
 var config = require('nconf').file({file: 'config.json'});
 
 var game = require('../gameServer');
-
 app.set('port', process.env.PORT || 3000);
 
 var httpServer = app.listen(app.get('port'), function() {
