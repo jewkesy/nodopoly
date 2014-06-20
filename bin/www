@@ -3,7 +3,7 @@ var _ = require('underscore');
 var debug = require('debug')('nodopoly');
 var app = require('../app');
 
-var config = require('nconf').file({file: 'config.json'});
+//var config = require('nconf').file({file: '/config.json'});
 
 var game = require('../gameServer');
 app.set('port', process.env.PORT || 3000);
@@ -14,8 +14,8 @@ var httpServer = app.listen(app.get('port'), function() {
 
 var server = game.createServer({
 	httpServer: httpServer,
-	tcpServer: config.get("tcp").host,
-	tcpPort: config.get("tcp").port
+	tcpServer: app.config.get("tcp").host,
+	tcpPort: app.config.get("tcp").port
 });
 
 server.start();
@@ -40,7 +40,7 @@ server.on('client connection',  function (socket) {
 		message: 'Someone connected: ' + ip
 	})
 
-	if (config.verbose) console.log(_.keys(socket));
+	if (app.config.verbose) console.log(_.keys(socket));
 });
 
 server.on('error', function (err) {
@@ -51,6 +51,6 @@ server.on('error', function (err) {
 });
 
 mgr.on('client message', function (data) {
-	if (nconf.get("verbose")) { console.log(data.data); }
+	if (app.config.verbose) { console.log(data.data); }
 	data.client.broadcast('message', data.data);
 });

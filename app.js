@@ -14,6 +14,8 @@ var gameboard = require('./routes/gameboard');
 
 var app = express();
 
+app.config = nconf;
+
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 
