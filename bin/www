@@ -23,6 +23,7 @@ server.start();
 var mgr = game.createManager();
 
 server.on('client connection',  function (socket) {
+	console.log('client connection');
 	var ip = socket.remoteAddress || 'unknown IP Address';
 	var client = game.transformSocket(socket);
 
