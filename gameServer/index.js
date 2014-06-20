@@ -31,7 +31,7 @@ var gameServer = {
 					server.on('connection', onSocketConnection);
 
 					server.on('listening', function () {
-						console.log('Server is now listening ' + config.tcpServer + ':' + config.tcpPort);
+						console.log('Server is now listening on TCP/IP ' + config.tcpServer + ':' + config.tcpPort);
 					});
 
 					server.listen(config.tcpPort, config.tcpHost);

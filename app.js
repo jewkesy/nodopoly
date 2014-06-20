@@ -27,12 +27,10 @@ var gameBoardModel = mongoose.model('gameBoard', gameBoardSchema);
 
 db.on('error', console.error);
 db.once('open', function() {
-  // Create your schemas and models here.
     console.log("Connected to '" + nconf.get("mongo").database + "' database");
 
     gameBoardModel.find({}, function (err, item) {
         if (err) console.log(err);
-        console.log(item);
     });
 
     // db.collection("gameBoard", {strict:true}, function(err, collection) {

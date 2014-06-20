@@ -9,7 +9,7 @@ var game = require('../gameServer');
 app.set('port', process.env.PORT || 3000);
 
 var httpServer = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + httpServer.address().port);
+  console.log('Express server listening.  Use http://externalIPAddress:' + httpServer.address().port)  ;
 });
 
 var server = game.createServer({
@@ -23,7 +23,6 @@ server.start();
 var mgr = game.createManager();
 
 server.on('client connection',  function (socket) {
-	console.log('client connection');
 	var ip = socket.remoteAddress || 'unknown IP Address';
 	var client = game.transformSocket(socket);
 
