@@ -377,7 +377,7 @@ window.createGame = (function ($) {
 			},
 			menu: {
 				showGameBoard: function (e) {
-					$('#mnuGameBaord').addClass('selected');
+					$('#mnuGameBoard').addClass('selected');
 					$('#mnuStatus').removeClass('selected');
 					$('#mnuHistory').removeClass('selected');
 
@@ -385,7 +385,7 @@ window.createGame = (function ($) {
 					$('#history').hide();					
 				},
 				showStatus: function (e) {
-					$('#mnuGameBaord').removeClass('selected');
+					$('#mnuGameBoard').removeClass('selected');
 					$('#mnuStatus').addClass('selected');
 					$('#mnuHistory').removeClass('selected');
 
@@ -393,7 +393,7 @@ window.createGame = (function ($) {
 					$('#history').hide();	
 				},
 				showHistory: function (e) {
-					$('#mnuGameBaord').removeClass('selected');
+					$('#mnuGameBoard').removeClass('selected');
 					$('#mnuStatus').removeClass('selected');
 					$('#mnuHistory').addClass('selected');
 
