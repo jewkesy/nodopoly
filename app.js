@@ -25,27 +25,6 @@ var gameBoardSchema = new mongoose.Schema({
 
 var gameBoardModel = mongoose.model('gameBoard', gameBoardSchema);
 
-db.on('error', console.error);
-db.once('open', function() {
-    console.log("Connected to '" + nconf.get("mongo").database + "' database");
-
-    gameBoardModel.find({}, function (err, item) {
-        if (err) console.log(err);
-    });
-
-    // db.collection("gameBoard", {strict:true}, function(err, collection) {
-    //     if (err) throw err;
-    //     console.log('gameBoard collection exists...');
-    //     collection.find().toArray(function (err, items) {
-    //         if (items.length == 0) {
-    //             console.log("Empty collection");
-    //         }
-    //     });
-    // });
-});
-
-mongoose.connect("mongodb://" + nconf.get("mongo").user + ":" + nconf.get("mongo").password + "@" + nconf.get("mongo").host + ":" + nconf.get("mongo").port + "/" + nconf.get("mongo").database);
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -79,6 +58,27 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
+
+    db.on('error', console.error);
+    db.once('open', function() {
+        console.log("Connected to '" + nconf.get("mongo").database + "' database");
+
+        gameBoardModel.find({}, function (err, item) {
+            if (err) console.log(err);
+        });
+
+        // db.collection("gameBoard", {strict:true}, function(err, collection) {
+        //     if (err) throw err;
+        //     console.log('gameBoard collection exists...');
+        //     collection.find().toArray(function (err, items) {
+        //         if (items.length == 0) {
+        //             console.log("Empty collection");
+        //         }
+        //     });
+        // });
+    });
+    mongoose.connect("mongodb://" + nconf.get("mongo").user + ":" + nconf.get("mongo").password + "@" + nconf.get("mongo").host + ":" + nconf.get("mongo").port + "/" + nconf.get("mongo").database);
+
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
