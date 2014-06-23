@@ -292,7 +292,7 @@ window.createGame = (function ($) {
 			},
 			events: {
 				onConnect: function () {
-					$('#serverStatus').removeClass('disconnected').addClass('connected').html('Connected to host ' + server.socket.options.host + ':' + server.socket.options.port);
+					$('#serverStatus').removeClass('disconnected').addClass('connected').html('Connected to host ' + location.host);
 					theGame.server.sendHeartBeat();
 					heartbeatId = setInterval(function() {
 						theGame.server.sendHeartBeat();
@@ -303,7 +303,7 @@ window.createGame = (function ($) {
 				},
 				onDisconnect: function () {
 					clearInterval(heartbeatId);
-					$('#serverStatus').removeClass('connected').addClass('disconnected').html('Disconnected from host ' + server.socket.options.host + ':' + server.socket.options.port);
+					$('#serverStatus').removeClass('connected').addClass('disconnected').html('Disconnected from host ' + location.host);
 				},
 				onServerError: function (err) {
 					clearInterval(heartbeatId);
