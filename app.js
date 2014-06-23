@@ -36,6 +36,15 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(stylus.middleware({
+    src: __dirname + '/assets',
+    dest:__dirname + '/public',
+    compile: function(str, path) {
+        return stylus(str).set('filename', path).set('compress', true);
+    }
+}));
+
+
 // Make our db accessible to our router
 app.use(function(req,res,next){
     req.db = db;

@@ -1,0 +1,145 @@
+/* reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, bockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, header, nav, footer, section, article, figure, figcaption  { margin:0; padding:0; border:0; outline:0; }
+ol, ul, li { list-style:none; }
+header, nav, footer, section, article, figure, figcaption { display:block; }
+
+body
+  padding: 0
+  margin: auto
+  font-size: 0.7em
+  font-family:  "Arial Narrow", Arial, "Helvetica Condensed", Helvetica, sans-serif
+
+a
+  color: #00B7FF
+
+input, #chat-history, #commands, #people, #serverStatus
+  border: 1px solid #ddd
+  background-color: #fff
+
+div.clear
+  clear:both
+
+#headers
+  width: 100%
+
+#headers > span
+  width: 25%
+
+#menu
+  float: left
+
+#menu > ul
+  list-style-type: none
+  margin: 0
+  padding: 0
+
+#menu > ul > li
+  padding: 10px
+  background-color: #eee
+  cursor: pointer
+  border: 1px solid #C1C1C1
+
+#menu > ul > li.selected
+  background-color: #0099FF
+
+#menu > ul > li.selected > a
+  color: #eee
+
+#menu > ul > li:hover
+  background-color: grey
+
+#menu > ul > li:hover > a
+  color: #eee
+
+#menu > ul > li > a
+  display: block
+  text-decoration: none
+  color: grey
+
+#chat-history,#drones, #people
+  width: 30%
+  overflow: auto
+  height: 600px
+  padding: 0
+  margin-bottom: 5px
+  display: block
+  float: left
+
+#chat-history > div
+  margin: 5px 0
+  padding: 5px
+  cursor: pointer
+  word-wrap: break-word
+
+#chat-history > div.even
+  background-color: #eee
+
+#chat-history > div.own-message
+  background-color: #b6ff00
+
+#chat-history > div.warn-message
+  background-color: #FFDB94
+
+#chat-history > div.error-message
+  background-color: #ffc0cb
+
+.item
+  padding: 5px
+  display: block
+  margin-bottom: 7px
+  border: 1px #eee solid
+
+.avatar
+  margin: 5px
+  float: left
+  width: 40px
+
+.time
+  color: #CCC
+
+.beacons
+  color: #CCC
+  font-style: italic
+  padding-left: 10px
+
+.location
+  padding: 0
+  text-align: justify
+
+#serverStatus
+  padding: 6px
+  position:absolute
+  bottom:0
+  overflow: hidden
+
+.connected
+  background-color: #99FF99 !important
+
+.disconnected
+  background-color: #FF9696 !important
+  color: red
+
+#mapContainer
+  height: 650px
+  width: 1000px
+
+  display: block
+  float: left
+  margin: 5px
+
+.map
+  height: 100%
+  width: 100%
+  border: 1px grey solid
+  color: #eee
+  text-align: center
+
+.map tr
+  height: 40px
+
+.map td
+  height: 40px
+  width: 40px
+
+span.location
+  padding-right: 5px
