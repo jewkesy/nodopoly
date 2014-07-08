@@ -39,6 +39,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(stylus.middleware({
     src: __dirname + '/assets',
     dest:__dirname + '/public',
+    force: true,
+    debug: true,
     compile: function(str, path) {
         return stylus(str).set('filename', path).set('compress', true);
     }
