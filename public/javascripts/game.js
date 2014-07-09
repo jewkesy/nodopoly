@@ -381,24 +381,30 @@ window.createGame = (function ($) {
 					$('#mnuStatus').removeClass('selected');
 					$('#mnuHistory').removeClass('selected');
 
-					$('#mapContainer').hide();
-					$('#history').hide();					
+					$('#gameboard').show();
+					$('#game-status').hide();	
+					$('#chat-history').hide();
+					$('#game-history').hide();					
 				},
 				showStatus: function (e) {
 					$('#mnuGameBoard').removeClass('selected');
 					$('#mnuStatus').addClass('selected');
 					$('#mnuHistory').removeClass('selected');
 
-					$('#mapContainer').show();
-					$('#history').hide();	
+					$('#gameboard').hide();
+					$('#game-status').show();	
+					$('#chat-history').hide();
+					$('#game-history').hide();
 				},
 				showHistory: function (e) {
 					$('#mnuGameBoard').removeClass('selected');
 					$('#mnuStatus').removeClass('selected');
 					$('#mnuHistory').addClass('selected');
 
-					$('#history').show();
-					$('#mapContainer').hide();		
+					$('#gameboard').hide();
+					$('#game-status').hide();	
+					$('#chat-history').show();
+					$('#game-history').show();
 				}
 			}
 		};
